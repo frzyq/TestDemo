@@ -30,8 +30,12 @@ class translate():
 
     def parse_data(self,json_str):
         dict_data=json.loads(json_str)
-        result = dict_data["content"]['out']
-        print("translation:{}  \nResults after translation ：{}""".format(self.query_str,result))
+        try:
+            result = dict_data["content"]['out']
+            print("translation:{}  \n Results after translation ：{}""".format(self.query_str,result))
+        except:
+            print("无法翻译，该语句中可能含有敏感词汇，请重新输入")
+
 
     def run(self):
         json_str=self.get_data_tran()
@@ -42,5 +46,4 @@ if __name__=='__main__':
     query_str= input("Please enter your translation：")
     tr =translate(query_str)
     tr.run()
-
 
